@@ -1,0 +1,29 @@
+manifestVersion: 1
+
+package:
+  name: robonix.primitive.jaka.lumi.chassis
+  version: 0.1.0
+  description: >-
+    JAKA Lumi differential-drive chassis primitive over the vendor
+    JSON-over-TCP API (192.168.10.10:31001). Exposes odometry, bounded
+    single-shot move commands and a /cmd_vel velocity inlet; motion is
+    gated off by default.
+  tags: [primitive, chassis, jaka, lumi, tcp, ros2]
+  maintainers:
+    - Felix Xi <xi.lifeng@qq.com>
+  license: Apache-2.0
+
+build: bash scripts/build.sh
+start: bash scripts/start.sh
+
+# Built-in chassis contracts from <robonix>/capabilities/primitive/chassis/.
+# No package-local .toml: this package implements the canonical surface.
+capabilities:
+  - name: robonix/primitive/chassis/odom
+    transport: ros2
+  - name: robonix/primitive/chassis/move
+    transport: grpc
+  - name: robonix/primitive/chassis/twist_in
+    transport: ros2
+
+depends: []
